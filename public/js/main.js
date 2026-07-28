@@ -67,6 +67,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Helper to trigger mailto links in a hidden iframe to prevent navigating away or losing the tab
+  function triggerMailto(url) {
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = url;
+    document.body.appendChild(iframe);
+    setTimeout(() => {
+      iframe.remove();
+    }, 1000);
+  }
+
   // --- CONTACT FORM ACTIONS ---
   if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -83,9 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await response.json();
 
         if (result.success) {
-          // Open user's mail client to send the real email
+          // Open user's mail client to send the real email in a non-disruptive way
           const mailtoUrl = `mailto:edigmine@gmail.com?subject=${encodeURIComponent(data.subject + ' - ' + data.name)}&body=${encodeURIComponent("From: " + data.name + " (" + data.email + ")\n\n" + data.message)}`;
-          window.location.href = mailtoUrl;
+          triggerMailto(mailtoUrl);
 
           // Success Feedback
           const container = contactForm.parentElement;
@@ -116,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const email = emailInput ? emailInput.value : '';
       if (email) {
         const mailtoUrl = `mailto:edigmine@gmail.com?subject=${encodeURIComponent('Subscribe Dogfriz Safety Alerts')}&body=${encodeURIComponent('Hello! Please subscribe me to canine hot-weather safety alerts. My email address is: ' + email)}`;
-        window.location.href = mailtoUrl;
+        triggerMailto(mailtoUrl);
         alert('Thank you! Opening your email client to complete your subscription request to edigmine@gmail.com.');
         newsletterForm.reset();
       }
