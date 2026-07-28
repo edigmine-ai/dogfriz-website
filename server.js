@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Path to assets directory
-const assetsDir = path.join(__dirname, '../dogfriz_assets');
+const assetsDir = path.join(__dirname, 'dogfriz_assets');
 
 // Store global site mode in server memory for easy local toggling
 let siteMode = 'phase1'; // 'phase1' or 'phase2'

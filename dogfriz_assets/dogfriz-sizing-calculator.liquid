@@ -1,0 +1,222 @@
+{% comment %}
+  Dogfriz Interactive Size Finder Section
+  Save this file as sections/dogfriz-sizing-calculator.liquid in your Shopify Theme Code editor.
+  You can then add it to any product page under the Shopify Theme Customizer!
+{% endcomment %}
+
+<div class="dogfriz-calculator-container page-width">
+  <div class="calculator-card">
+    <div class="calculator-header">
+      <span class="calculator-badge">{{ section.settings.badge_text }}</span>
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.description }}</p>
+    </div>
+    
+    <div class="calculator-inputs">
+      <div class="input-group">
+        <label for="dogfriz-breed-select">Select Dog Breed Group</label>
+        <select id="dogfriz-breed-select" class="calc-select">
+          <option value="S">French Bulldog, Pug, JRT (Chest 15"-20")</option>
+          <option value="M" selected>Beagle, Cocker Spaniel, Border Collie (Chest 20"-26")</option>
+          <option value="L">Golden Retriever, Lab, Boxer, German Shepherd (Chest 26"-32")</option>
+          <option value="XL">Rottweiler, Great Dane, Mastiff (Chest 32"-40")</option>
+          <option value="custom">Other / Custom Girth</option>
+        </select>
+      </div>
+      
+      <div class="input-group" id="custom-girth-group" style="display:none;">
+        <label for="dogfriz-girth-input">Input Chest Girth (in Inches)</label>
+        <input type="number" id="dogfriz-girth-input" placeholder="e.g. 24" min="10" max="50" class="calc-input">
+      </div>
+    </div>
+    
+    <div class="calculator-output" id="dogfriz-calc-result">
+      <div class="output-icon">🦺</div>
+      <div class="output-details">
+        <span class="output-label">Perfect Size Match</span>
+        <span class="output-value" id="dogfriz-size-val">M (Medium)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .dogfriz-calculator-container {
+    margin: 40px auto;
+    max-width: 600px;
+    padding: 0 20px;
+  }
+  .calculator-card {
+    background: #F0F9FB;
+    border: 2px solid #0099B8;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .calculator-badge {
+    background: #FF6F3C;
+    color: #fff;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 50px;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+  .calculator-header h2 {
+    color: #1E2229;
+    font-size: 24px;
+    margin: 0 0 8px 0;
+    font-weight: 800;
+  }
+  .calculator-header p {
+    color: #5B6476;
+    font-size: 14px;
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+  }
+  .calculator-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .input-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1E2229;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .calc-select, .calc-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #E2E8F0;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #1E2229;
+    outline: none;
+    transition: border-color 0.25s ease;
+  }
+  .calc-select:focus, .calc-input:focus {
+    border-color: #0099B8;
+  }
+  .calculator-output {
+    background: #fff;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-left: 5px solid #FF6F3C;
+  }
+  .output-icon {
+    font-size: 32px;
+  }
+  .output-details {
+    display: flex;
+    flex-direction: column;
+  }
+  .output-label {
+    font-size: 11px;
+    color: #5B6476;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .output-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1E2229;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const breedSelect = document.getElementById('dogfriz-breed-select');
+    const girthInput = document.getElementById('dogfriz-girth-input');
+    const customGirthGroup = document.getElementById('custom-girth-group');
+    const sizeVal = document.getElementById('dogfriz-size-val');
+    
+    function calculateSize() {
+      const selected = breedSelect.value;
+      if (selected === 'custom') {
+        customGirthGroup.style.display = 'flex';
+        const girth = parseFloat(girthInput.value);
+        if (!girth) {
+          sizeVal.innerText = 'Input Girth...';
+          return;
+        }
+        let size = 'M';
+        if (girth < 20) size = 'S (Small)';
+        else if (girth >= 20 && girth < 26) size = 'M (Medium)';
+        else if (girth >= 26 && girth < 32) size = 'L (Large)';
+        else if (girth >= 32) size = 'XL (Extra Large)';
+        sizeVal.innerText = size;
+      } else {
+        customGirthGroup.style.display = 'none';
+        if (selected === 'S') sizeVal.innerText = 'S (Small)';
+        else if (selected === 'M') sizeVal.innerText = 'M (Medium)';
+        else if (selected === 'L') sizeVal.innerText = 'L (Large)';
+        else if (selected === 'XL') sizeVal.innerText = 'XL (Extra Large)';
+      }
+      
+      // Auto-update standard Dawn product selector if open
+      const activeSizeLabel = sizeVal.innerText.split(' ')[0];
+      const shopifyOptions = document.querySelectorAll('fieldset[name="Size"] input, fieldset[name="size"] input, select[id*="-option-0"] option');
+      shopifyOptions.forEach(opt => {
+        if (opt.value === activeSizeLabel || opt.innerText === activeSizeLabel) {
+          opt.click();
+          if (opt.tagName === 'OPTION') {
+            opt.parentElement.value = opt.value;
+            opt.parentElement.dispatchEvent(new Event('change'));
+          }
+        }
+      });
+    }
+    
+    breedSelect.addEventListener('change', calculateSize);
+    girthInput.addEventListener('input', calculateSize);
+    calculateSize();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Dogfriz Size Finder",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Interactive Tool"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Interactive Sizing Calculator"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Section Description",
+      "default": "Find the perfect gear size for your dog to ensure maximum cooling contact and core chest protection."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dogfriz Size Finder"
+    }
+  ]
+}
+{% endschema %}
