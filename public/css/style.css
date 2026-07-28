@@ -1546,8 +1546,50 @@ footer {
 @media (max-width: 576px) {
   .seals-grid, .grid-three, .grid-two, .footer-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
+  
+  .home-section {
+    padding: 48px 0 !important;
+  }
+  
+  .section-header {
+    margin-bottom: 32px !important;
+  }
+  
+  h1 {
+    font-size: 32px !important;
+  }
+  
+  h2 {
+    font-size: 24px !important;
+  }
+  
+  h3 {
+    font-size: 20px !important;
+  }
+  
+  /* Contact section optimizations */
+  .contact-grid {
+    gap: 24px !important;
+    padding: 24px 0 !important;
+  }
+  
+  .contact-card {
+    padding: 24px 16px !important;
+    border-radius: var(--radius-sm) !important;
+  }
+  
+  /* Card padding optimizations for mobile screens */
+  .product-card-body, .blog-card-body {
+    padding: 16px !important;
+  }
+  
+  .product-card-footer {
+    padding-top: 12px !important;
+  }
+  
   .hero-content h1 {
-    font-size: 38px;
+    font-size: 34px !important;
   }
 }
