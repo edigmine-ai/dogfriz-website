@@ -83,13 +83,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await response.json();
 
         if (result.success) {
+          // Open user's mail client to send the real email
+          const mailtoUrl = `mailto:edigmine@gmail.com?subject=${encodeURIComponent(data.subject + ' - ' + data.name)}&body=${encodeURIComponent("From: " + data.name + " (" + data.email + ")\n\n" + data.message)}`;
+          window.location.href = mailtoUrl;
+
           // Success Feedback
           const container = contactForm.parentElement;
           container.innerHTML = `
             <div style="text-align: center; padding: 40px 20px;">
               <div style="font-size: 50px; margin-bottom: 20px;">✉️</div>
-              <h3 style="margin-bottom: 12px; font-family: var(--font-serif); font-size: 24px;">Message Received!</h3>
-              <p style="color: var(--slate-gray); margin-bottom: 24px;">${result.message}</p>
+              <h3 style="margin-bottom: 12px; font-family: var(--font-serif); font-size: 24px;">Message Sent!</h3>
+              <p style="color: var(--slate-gray); margin-bottom: 24px;">Thank you! We have opened your email client to send your message to edigmine@gmail.com so we can reply directly to your inbox.</p>
               <button class="btn btn-primary" onclick="window.location.reload()">Send Another Message</button>
             </div>
           `;
@@ -99,6 +103,22 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (err) {
         console.error('Error submitting form:', err);
         alert('Network error. Please try again.');
+      }
+    });
+  }
+
+  // --- NEWSLETTER SUBSCRIPTION FORM ---
+  const newsletterForm = document.getElementById('newsletter-subscription-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('newsletter-email');
+      const email = emailInput ? emailInput.value : '';
+      if (email) {
+        const mailtoUrl = `mailto:edigmine@gmail.com?subject=${encodeURIComponent('Subscribe Dogfriz Safety Alerts')}&body=${encodeURIComponent('Hello! Please subscribe me to canine hot-weather safety alerts. My email address is: ' + email)}`;
+        window.location.href = mailtoUrl;
+        alert('Thank you! Opening your email client to complete your subscription request to edigmine@gmail.com.');
+        newsletterForm.reset();
       }
     });
   }

@@ -21,16 +21,15 @@
         <h4>Support</h4>
         <ul>
           <li><a href="/#contact-section">Get in Touch</a></li>
-          <li><a href="/mission">Animal Welfare</a></li>
           <li><a href="/blogs/recognizing-preventing-heatstroke">Emergency First Aid</a></li>
         </ul>
       </div>
 
       <div class="footer-newsletter">
         <h4>Keep Your Pup Cool</h4>
-        <p>Subscribe to our canine hot-weather safety alerts and receive 10% off your future order.</p>
-        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully! Thank you for prioritizing your dog\'s safety.'); this.reset();">
-          <input type="email" placeholder="Your email address" required>
+        <p>Subscribe to our canine hot-weather safety alerts to stay in touch!</p>
+        <form class="newsletter-form" id="newsletter-subscription-form">
+          <input type="email" id="newsletter-email" placeholder="Your email address" required>
           <button type="submit">Join</button>
         </form>
       </div>

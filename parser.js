@@ -25,6 +25,13 @@ function parseMarkdownFile(filePath) {
     const line = lines[i];
     const trimmed = line.trim();
     
+    // Skip Target Keywords, Header Image, and Product Showcase Image bullets so they don't render
+    if (trimmed.includes('**Target Keywords:**') || 
+        trimmed.includes('**Header Image:**') || 
+        trimmed.includes('**Product Showcase Image:**')) {
+      continue;
+    }
+    
     if (trimmed.startsWith('# ')) {
       title = trimmed.slice(2).trim();
       continue;
