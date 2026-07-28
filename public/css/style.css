@@ -1514,14 +1514,40 @@ footer {
   }
 }
 
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    height: auto;
+    padding: 16px 16px;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  nav {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    white-space: nowrap;
+  }
+  
+  .nav-links a {
+    font-size: 14px;
+    padding: 6px 0;
+  }
+}
+
 @media (max-width: 576px) {
   .seals-grid, .grid-three, .grid-two, .footer-grid {
     grid-template-columns: 1fr;
   }
   .hero-content h1 {
     font-size: 38px;
-  }
-  .nav-links {
-    display: none; /* In high fidelity we can toggle this but let's keep it simple or make a hamburger */
   }
 }
