@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<section class="blog-header text-center">
+  <div class="container">
+    <span class="badge badge-blue">The Dogfriz Journal</span>
+    <h1 class="blog-title-large" style="margin-top: 12px; margin-bottom: 20px;">Canine Summer Safety Guides</h1>
+    <p style="color: var(--slate-gray); max-width: 650px; margin: 0 auto; font-size: 18px;">
+      Empower yourself with veterinarian-backed literature on heatstroke prevention, hydration science, and physical summer therapy.
+    </p>
+  </div>
+</section>
+
+<section class="home-section" style="padding-top: 60px;">
+  <div class="container">
+    <div class="grid-two">
+      <% blogs.forEach((blog, index) => { %>
+        <div class="blog-card">
+          <div class="blog-card-image" style="overflow: hidden; height: 220px;">
+            <img src="<%= blog.image %>" alt="<%= blog.title %>" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span>📚 Guide #<%= index + 1 %></span>
+              <span>⏱️ 5-8 min read</span>
+            </div>
+            <h3 style="font-family: var(--font-serif);"><%= blog.title %></h3>
+            <p class="blog-card-excerpt"><%= blog.metaDescription %></p>
+            <a href="/blogs/<%= blog.slug %>" class="blog-card-link">Read Science Breakdown &rarr;</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

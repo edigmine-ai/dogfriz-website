@@ -1,0 +1,94 @@
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo" style="color: var(--white);">
+          <span class="emoji">🐕</span>
+          <span class="logo-dog" style="color: var(--primary-orange);">Dog</span><span class="logo-friz" style="color: var(--primary-blue);">friz</span>
+        </a>
+        <p>Providing physical thermal regulation solutions and critical science-backed education to keep dogs safe and happy all summer long.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Science & Safety</h4>
+        <ul>
+          <li><a href="/blogs">Summer Safety Guides</a></li>
+          <li><a href="/products">Canine Gear Science</a></li>
+          <li><a href="/mission">Our Mission & Science</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="/#contact-section">Get in Touch</a></li>
+          <li><a href="/mission">Animal Welfare</a></li>
+          <li><a href="/blogs/recognizing-preventing-heatstroke">Emergency First Aid</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-newsletter">
+        <h4>Keep Your Pup Cool</h4>
+        <p>Subscribe to our canine hot-weather safety alerts and receive 10% off your future order.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully! Thank you for prioritizing your dog\'s safety.'); this.reset();">
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Dogfriz. All rights reserved. Locally simulated high-fidelity prototype.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Admin Dashboard Button and Modal -->
+  <button class="admin-dashboard-btn" title="Open Admin Control Center">
+    ⚙️
+  </button>
+
+  <div class="admin-modal">
+    <div class="admin-modal-content">
+      <div class="admin-modal-header">
+        <h2 style="font-family: var(--font-serif);">Dogfriz Admin Dashboard</h2>
+        <button class="admin-modal-close-btn" style="font-size: 24px; color: var(--slate-gray);">&times;</button>
+      </div>
+      
+      <div style="margin-bottom: 30px;">
+        <h3 style="margin-bottom: 12px; font-size: 18px;">Simulation Control Panel</h3>
+        <p style="font-size: 14px; color: var(--slate-gray); margin-bottom: 16px;">
+          This dashboard lets you control and observe the store's state as you transition from a "Clean Scientific Showcase" (Phase 1) to an "Activated Dropshipping Shop" (Phase 2).
+        </p>
+        <div style="display: flex; gap: 12px; background-color: var(--light-gray); padding: 16px; border-radius: var(--radius-sm);">
+          <div style="flex-grow: 1;">
+            <div style="font-weight: 700; font-size: 14px; margin-bottom: 4px;">Active Storefront Mode:</div>
+            <div style="font-size: 13px; color: var(--slate-gray);">
+              <%= siteMode === 'phase1' 
+                  ? 'Phase 1 - Non-transactional scientific landing pages, commerce elements hidden.' 
+                  : 'Phase 2 - Active commerce, buy buttons visible, interactive cart drawer enabled.' %>
+            </div>
+          </div>
+          <button class="btn btn-secondary admin-toggle-btn" style="padding: 10px 16px; font-size: 13px;">
+            Toggle State
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom: 12px; font-size: 18px;">Live Customer Inquiries & Feedback</h3>
+        <p style="font-size: 14px; color: var(--slate-gray); margin-bottom: 16px;">
+          Simulated incoming contact forms submitted by users will display here instantly without needing a full-page database.
+        </p>
+        <div id="admin-messages-list">
+          <!-- Populated dynamically via fetchAdminState in main.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<%- include('partials/header') %>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge-float">🐶 100% Vet Approved</div>
+      <h1>Keeping Dogs Cool and Safe All Summer Long</h1>
+      <p>
+        Because dogs cannot sweat like we do, heat exhaustion can become critical in minutes. Dogfriz engineering provides advanced evaporative mesh vests, pressure-activated cooling pads, and portable hydration flasks designed specifically for canine thermal regulation.
+      </p>
+      <div class="hero-actions">
+        <a href="/products" class="btn btn-primary">Explore Gear Science</a>
+        <a href="/blogs" class="btn btn-outline">Read Safety Guides</a>
+      </div>
+    </div>
+    
+    <div class="hero-image-container">
+      <div style="border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.15); border: 4px solid white;">
+        <img src="/images/product_cooling_vest.jpg" alt="Dogfriz Core Cooling Vest" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Science Trust Seals -->
+<section class="science-seals">
+  <div class="container seals-grid">
+    <div class="seal-card">
+      <span class="seal-icon">🔬</span>
+      <h3>Thermoregulatory Support</h3>
+      <p>Specifically target core chest vessels to speed up blood heat-exchange.</p>
+    </div>
+    <div class="seal-card">
+      <span class="seal-icon">☀️</span>
+      <h3>Reflective Deflector</h3>
+      <p>Outer aluminum weave reflects up to 85% of solar radiation directly.</p>
+    </div>
+    <div class="seal-card">
+      <span class="seal-icon">💧</span>
+      <h3>Evaporative Tech</h3>
+      <p>Uses natural heat absorption of converting liquid water to vapor.</p>
+    </div>
+    <div class="seal-card">
+      <span class="seal-icon">🩺</span>
+      <h3>Veterinary Certified</h3>
+      <p>Designed in collaboration with veterinary critical care experts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="home-section">
+  <div class="container">
+    <div class="section-header text-center" style="margin: 0 auto 60px;">
+      <span class="badge badge-orange">Dogfriz Engineering</span>
+      <h2 style="font-family: var(--font-serif); font-size: 36px; margin-top: 12px;">Canine Gear Science</h2>
+      <p>
+        Our scientific cooling solutions are engineered to support physical activity in high ambient heat, mimicking nature to provide safe, comfortable thermal regulation.
+      </p>
+    </div>
+
+    <div class="grid-three">
+      <% featuredProducts.forEach(product => { %>
+        <div class="product-card">
+          <div class="product-card-image" style="overflow: hidden; aspect-ratio: 4 / 3;">
+            <img src="<%= product.image %>" alt="<%= product.title %>" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="product-card-body">
+            <span class="product-card-category">Science Showcase</span>
+            <h3><%= product.title %></h3>
+            <p class="product-card-desc"><%= product.metaDescription %></p>
+            
+            <div class="product-card-footer">
+              <% if (siteMode === 'phase2') { %>
+                <span class="product-price">$<%= product.numericPricing %></span>
+                <a href="/products/<%= product.slug %>" class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px;">View Details</a>
+              <% } else { %>
+                <span class="product-science-notice">
+                  🧪 Under Lab Testing
+                </span>
+                <a href="/products/<%= product.slug %>" class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Read Science</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    
+    <div class="text-center" style="margin-top: 40px;">
+      <a href="/products" class="btn btn-outline">Explore All Products & Bundles</a>
+    </div>
+  </div>
+</section>
+
+<!-- Blog Section Preview -->
+<section class="home-section" style="background-color: var(--light-gray);">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge badge-blue">Expert Summer Safety Guides</span>
+      <h2 style="font-family: var(--font-serif); font-size: 36px; margin-top: 12px;">The Dogfriz Journal</h2>
+      <p>Equip yourself with veterinarian-backed guidelines to recognize the signs of hyperthermia and manage your dog's hot-weather health.</p>
+    </div>
+
+    <div class="grid-two">
+      <% latestBlogs.forEach(blog => { %>
+        <div class="blog-card">
+          <div class="blog-card-image" style="overflow: hidden; height: 220px;">
+            <img src="<%= blog.image %>" alt="<%= blog.title %>" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span>📚 Guide</span>
+              <span>⏱️ 5 min read</span>
+            </div>
+            <h3><%= blog.title %></h3>
+            <p class="blog-card-excerpt"><%= blog.metaDescription %></p>
+            <a href="/blogs/<%= blog.slug %>" class="blog-card-link">Read Full Science Guide &rarr;</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+    <div class="text-center" style="margin-top: 40px;">
+      <a href="/blogs" class="btn btn-secondary">Explore All Summer Guides</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<section id="contact-section" class="home-section">
+  <div class="container contact-grid">
+    <div>
+      <span class="badge badge-orange">Get In Touch</span>
+      <h2 style="font-family: var(--font-serif); font-size: 36px; margin-top: 12px; margin-bottom: 20px;">Have Questions About Canine Summer Safety?</h2>
+      <p style="color: var(--slate-gray); margin-bottom: 30px; font-size: 16px;">
+        Our safety team and veterinary critical care consultants are available to help. If you have questions about which cooling vest is appropriate for your breed, sizing guidelines, or thermal regulation mechanisms, drop us a line!
+      </p>
+      
+      <div style="margin-bottom: 24px;">
+        <h4 style="margin-bottom: 6px;">📍 Head Office</h4>
+        <p style="color: var(--slate-gray);">Dogfriz HQ, 100 Summer Safe Blvd, San Francisco, CA</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 6px;">✉️ Brand Email</h4>
+        <p style="color: var(--slate-gray);">hello@dogfriz.com | support@dogfriz.com</p>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <h3 style="font-family: var(--font-serif); margin-bottom: 24px; font-size: 24px;">Send a Message</h3>
+      <form id="dogfriz-contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Breed / Subject</label>
+          <select id="subject" name="subject">
+            <option value="Sizing Question">Sizing Advice (Include Breed & Weight)</option>
+            <option value="Product Science">Gear Science Questions</option>
+            <option value="Veterinary Partner">Veterinary / Retail Partnership</option>
+            <option value="General Support">General Support</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="How can we help you keep your dog safe?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,220 @@
+<%- include('partials/header') %>
+
+<div class="container product-detail-grid">
+  <!-- Left Side: Product Images & Placeholders -->
+  <div class="product-detail-images">
+    <div class="product-detail-main-image" style="overflow: hidden; border-radius: 16px; aspect-ratio: 4 / 3;">
+      <img src="<%= product.image %>" alt="<%= product.title %>" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    
+    <div class="prompt-tip" style="margin-top: 24px;">
+      <strong>Midjourney Graphic Concept:</strong><br>
+      <span style="font-size: 12px; color: var(--slate-gray); font-style: italic;"><%= product.imagePrompt %></span>
+    </div>
+  </div>
+
+  <!-- Right Side: Buy Box & Product Info -->
+  <div class="product-detail-info">
+    <span class="badge badge-orange"><%= product.isBundle ? 'Synergistic Bundle' : 'Precision Gear' %></span>
+    <h1 style="font-family: var(--font-serif); margin-top: 8px;"><%= product.title.replace('Product Showcase: ', '') %></h1>
+    
+    <div class="product-detail-meta">
+      <span style="color: var(--success-color); font-weight: 600; font-size: 14px;">✓ In Stock</span>
+      <span style="color: var(--slate-gray);">|</span>
+      <span style="font-size: 14px; color: var(--slate-gray);">Laboratory Evaluated</span>
+    </div>
+
+    <% if (siteMode === 'phase2') { %>
+      <div class="product-detail-price" style="margin-bottom: 20px;">
+        $<%= product.numericPricing %>
+      </div>
+    <% } %>
+
+    <p class="product-detail-desc"><%= product.metaDescription %></p>
+
+    <!-- Interactive Sizing Section (If applicable) -->
+    <% if (product.slug !== 'portable-flask') { %>
+      <div class="size-selector-group">
+        <div class="size-selector-header">
+          <span>Select Size</span>
+          <span style="color: var(--primary-blue); cursor: pointer;" onclick="document.querySelector('[data-tab=\'tab-sizing\']').click(); document.getElementById('tab-sizing').scrollIntoView({behavior: 'smooth'});">Sizing Chart &rarr;</span>
+        </div>
+        <div class="size-btn-group">
+          <% if (product.slug === 'cooling-mat') { %>
+            <button class="size-btn active" data-size="M">Medium</button>
+            <button class="size-btn" data-size="L">Large</button>
+            <button class="size-btn" data-size="XL">Extra Large</button>
+          <% } else { %>
+            <button class="size-btn" data-size="S">S</button>
+            <button class="size-btn active" data-size="M">M</button>
+            <button class="size-btn" data-size="L">L</button>
+            <button class="size-btn" data-size="XL">XL</button>
+          <% } %>
+        </div>
+      </div>
+
+      <!-- Sizing Calculator Widget -->
+      <div class="sizing-calculator">
+        <div class="sizing-calculator-title">🧮 Interactive Size Finder</div>
+        <div class="sizing-calculator-row">
+          <select id="calc-weight">
+            <option value="French Bulldog">French Bulldog (Girth ~18")</option>
+            <option value="Beagle">Beagle (Girth ~22")</option>
+            <option value="Golden Retriever">Golden Retriever (Girth ~30")</option>
+            <option value="Rottweiler">Rottweiler (Girth ~36")</option>
+            <option value="Other">Other / Mixed Breed</option>
+          </select>
+          <input type="number" id="calc-girth" placeholder="Chest Girth (in)" min="10" max="50">
+        </div>
+        <div id="calc-result" class="sizing-calculator-result">
+          Enter your dog's chest girth in inches (widest part behind front legs) to find the perfect size.
+        </div>
+      </div>
+    <% } %>
+
+    <!-- Phase-Based Buy Box -->
+    <div class="buy-box">
+      <% if (siteMode === 'phase2') { %>
+        <div class="buy-box-row">
+          <div class="qty-input">
+            <button class="qty-btn qty-minus">-</button>
+            <div class="qty-val" id="product-qty">1</div>
+            <button class="qty-btn qty-plus">+</button>
+          </div>
+          <button class="btn btn-primary btn-add-to-cart" onclick="addToCart('<%= product.slug %>', '<%= product.title %>', '<%= product.numericPricing %>', '<%= product.image %>')">
+            Add to Cool-Down Drawer
+          </button>
+        </div>
+      <% } else { %>
+        <div style="background-color: var(--ice-blue-bg); border: 1px solid rgba(0, 153, 184, 0.15); padding: 20px; border-radius: var(--radius-sm); text-align: left;">
+          <h4 style="color: var(--primary-blue); font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            🔬 Science Showcase Phase
+          </h4>
+          <p style="font-size: 13px; color: var(--slate-gray); line-height: 1.6;">
+            Our gear is currently undergoing safety and laboratory testing for the upcoming season. Read our scientific breakdowns below to understand canine cooling mechanics.
+          </p>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- Product Details Tabs Section -->
+<section class="container product-tabs">
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="tab-science">Science & Features</button>
+    <% if (product.slug !== 'portable-flask') { %>
+      <button class="tab-btn" data-tab="tab-sizing">Sizing Guide</button>
+    <% } %>
+    <button class="tab-btn" data-tab="tab-operating">Operating & Care</button>
+  </div>
+
+  <div class="tab-content">
+    <!-- Science & Features Panel -->
+    <div class="tab-panel active id-science-features" id="tab-science">
+      <div class="blog-content">
+        <%- product.htmlContent %>
+      </div>
+    </div>
+
+    <!-- Sizing Guide Panel -->
+    <% if (product.slug !== 'portable-flask') { %>
+      <div class="tab-panel" id="tab-sizing">
+        <div class="blog-content">
+          <h3>Precision Sizing Information</h3>
+          <p>Proper fitment is critical to the efficiency of conductive and evaporative cooling. A vest that is too loose will not maintain contact with key chest blood vessels; a mat that is too small won't allow full core resting.</p>
+          
+          <% if (product.slug === 'cooling-mat') { %>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+              <thead>
+                <tr style="background-color: var(--light-gray);">
+                  <th style="padding: 12px; border: 1px solid var(--border-color);">Size</th>
+                  <th style="padding: 12px; border: 1px solid var(--border-color);">Dimensions</th>
+                  <th style="padding: 12px; border: 1px solid var(--border-color);">Recommended Weight</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Medium</strong></td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">20" x 16" (50 x 40 cm)</td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">Up to 30 lbs (e.g., Frenchies, Corgis, Pugs)</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Large</strong></td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">36" x 20" (90 x 50 cm)</td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">Up to 70 lbs (e.g., Beagles, Spaniels, Collies)</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Extra Large</strong></td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">44" x 28" (110 x 70 cm)</td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">Up to 110 lbs (e.g., Retrievers, Labs, Shepherds)</td>
+                </tr>
+              </tbody>
+            </table>
+          <% } else { %>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+              <thead>
+                <tr style="background-color: var(--light-gray);">
+                  <th style="padding: 12px; border: 1px solid var(--border-color);">Size</th>
+                  <th style="padding: 12px; border: 1px solid var(--border-color);">Chest Girth</th>
+                  <th style="padding: 12px; border: 1px solid var(--border-color);">Typical Breeds</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>S</strong></td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">15" - 20"</td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">French Bulldog, Jack Russell, Pug, Boston Terrier</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>M</strong></td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">20" - 26"</td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">Beagle, Cocker Spaniel, Border Collie, Shiba Inu</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>L</strong></td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">26" - 32"</td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">Golden Retriever, Boxer, Lab, German Shepherd</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>XL</strong></td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">32" - 40"</td>
+                  <td style="padding: 12px; border: 1px solid var(--border-color);">Rottweiler, Bernese Mountain Dog, Great Dane, Mastiff</td>
+                </tr>
+              </tbody>
+            </table>
+          <% } %>
+        </div>
+      </div>
+    <% } %>
+
+    <!-- Operating & Care Panel -->
+    <div class="tab-panel" id="tab-operating">
+      <div class="blog-content">
+        <h3>How to Operate & Care For Your Gear</h3>
+        
+        <% if (product.slug === 'core-cooling-vest' || product.slug === 'summer-safety-kit' || product.slug === 'ultimate-cooldown') { %>
+          <ol style="margin-left: 20px; margin-bottom: 20px;">
+            <li style="margin-bottom: 12px;"><strong>Soak:</strong> Submerge the vest entirely in cool tap water before heading outdoors.</li>
+            <li style="margin-bottom: 12px;"><strong>Wring:</strong> Squeeze out excess moisture so that it is damp but not heavy or dripping.</li>
+            <li style="margin-bottom: 12px;"><strong>Wear:</strong> Fit onto your dog, securing the adjustable buckles comfortably.</li>
+            <li style="margin-bottom: 12px;"><strong>Re-Wet:</strong> If the vest dries out during long treks, simply pour a cup of water over the top to reactivate evaporation instantly.</li>
+          </ol>
+          <h4>Care Instructions:</h4>
+          <p>Hand wash or machine wash on gentle cycle with cold water. Air dry flat. Do not tumble dry or expose to heavy chemical detergents.</p>
+        <% } else if (product.slug === 'cooling-mat') { %>
+          <p><strong>Activation:</strong> Requires zero water, electricity, or refrigeration. The pressure-activated gel automatically cools upon contact when your dog lies down.</p>
+          <p><strong>Recharging:</strong> Provides continuous cooling for up to 3 hours. To recharge, simply have your dog step off the mat for 15-20 minutes — it automatically releases stored heat and resets.</p>
+          <h4>Care Instructions:</h4>
+          <p>Wipe clean with a damp cloth and mild soapy water. Let air dry completely. Avoid leaving in direct, blazing solar radiation for prolonged periods.</p>
+        <% } else { %>
+          <p><strong>Hydration Protocol:</strong> Panting causes rapid fluid loss in hot weather. Offer small, frequent sips (every 10-15 minutes) rather than allowing your dog to chug water, which can trigger stomach twisting.</p>
+          <h4>Care & Cleaning:</h4>
+          <p>BPA-free Tritan plastic is highly durable and top-rack dishwasher safe. Rinse the food-grade silicone leaf drinking bowl with clean water after each trek.</p>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,54 @@
+<%- include('partials/header') %>
+
+<!-- Blog Detail Header -->
+<section class="blog-header text-center" style="padding: 60px 0 40px;">
+  <div class="container">
+    <div class="blog-meta-large">
+      <span>⏱️ 5-7 Minute Read</span>
+      <span>•</span>
+      <span>Veterinary Certified</span>
+    </div>
+    <h1 class="blog-title-large" style="line-height: 1.2; font-size: 40px;"><%= blog.title %></h1>
+    <div style="max-width: 900px; margin: 24px auto 0; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
+      <img src="<%= blog.image %>" alt="<%= blog.title %>" style="width: 100%; max-height: 420px; object-fit: cover; display: block;">
+    </div>
+  </div>
+</section>
+
+<!-- Blog Layout -->
+<div class="container blog-container">
+  <!-- Main Reading Content -->
+  <article class="blog-content">
+    <%- blog.htmlContent %>
+  </article>
+
+  <!-- Sidebar -->
+  <aside>
+    <div class="blog-sidebar-card">
+      <h3>🐕 Dogfriz Safety Mission</h3>
+      <p style="font-size: 14px; color: var(--slate-gray); line-height: 1.6; margin-bottom: 16px;">
+        Dogs have only critical sweat glands on their paws and rely almost entirely on panting. This makes them highly vulnerable to sudden thermal spikes. Our gear is scientifically designed to mimic biological cooling systems.
+      </p>
+      <a href="/mission" class="btn btn-outline" style="width: 100%; font-size: 13px; padding: 10px;">Our Safety Mission</a>
+    </div>
+
+    <!-- Suggested Gear Box -->
+    <div class="blog-sidebar-card" style="background-color: var(--white); border: 2px solid var(--primary-orange);">
+      <span class="badge badge-orange" style="margin-bottom: 12px; font-size: 10px;">Recommended Gear</span>
+      <h3 style="font-family: var(--font-serif); margin-bottom: 8px;">Dogfriz Core Cooling Vest</h3>
+      <p style="font-size: 13px; color: var(--slate-gray); margin-bottom: 16px;">
+        Acts as an artificial sweat layer, allowing natural evaporative cooling to keep your dog's chest and lungs cool on active summer walks.
+      </p>
+      
+      <% if (siteMode === 'phase2') { %>
+        <div style="font-size: 20px; font-weight: 700; margin-bottom: 16px; color: var(--charcoal-dark);">$39.99</div>
+        <a href="/products/core-cooling-vest" class="btn btn-primary" style="width: 100%; font-size: 13px; padding: 10px;">View Cooling Vest</a>
+      <% } else { %>
+        <div style="font-size: 13px; color: var(--primary-blue); font-weight: 600; margin-bottom: 16px;">🧪 Undergoing laboratory safety tests</div>
+        <a href="/products/core-cooling-vest" class="btn btn-outline" style="width: 100%; font-size: 13px; padding: 10px;">Read Scientific Breakdown</a>
+      <% } %>
+    </div>
+  </aside>
+</div>
+
+<%- include('partials/footer') %>

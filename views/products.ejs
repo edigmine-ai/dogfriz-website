@@ -1,0 +1,88 @@
+<%- include('partials/header') %>
+
+<section class="blog-header text-center">
+  <div class="container">
+    <span class="badge badge-orange">Canine Thermal Regulation</span>
+    <h1 class="blog-title-large" style="margin-top: 12px; margin-bottom: 20px;">The Science of Canine Cooling</h1>
+    <p style="color: var(--slate-gray); max-width: 650px; margin: 0 auto; font-size: 18px;">
+      Explore our engineered cooling gear designed specifically to assist your dog's natural thermoregulation in high ambient temperatures.
+    </p>
+  </div>
+</section>
+
+<!-- Individual Gear Section -->
+<section class="home-section" style="padding-top: 60px; padding-bottom: 40px;">
+  <div class="container">
+    <div class="section-header" style="margin-bottom: 40px;">
+      <span class="badge badge-blue">Precision Engineering</span>
+      <h2 style="font-family: var(--font-serif); font-size: 28px; margin-top: 8px;">Individual Scientific Gear</h2>
+    </div>
+
+    <div class="grid-three">
+      <% products.filter(p => !p.isBundle).forEach(product => { %>
+        <div class="product-card">
+          <div class="product-card-image" style="overflow: hidden; aspect-ratio: 4 / 3;">
+            <img src="<%= product.image %>" alt="<%= product.title %>" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="product-card-body">
+            <span class="product-card-category">Individual Showcase</span>
+            <h3><%= product.title.replace('Product Showcase: ', '') %></h3>
+            <p class="product-card-desc"><%= product.metaDescription %></p>
+            
+            <div class="product-card-footer">
+              <% if (siteMode === 'phase2') { %>
+                <span class="product-price">$<%= product.numericPricing %></span>
+                <a href="/products/<%= product.slug %>" class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px;">View Details</a>
+              <% } else { %>
+                <span class="product-science-notice">
+                  🧪 Under Lab Testing
+                </span>
+                <a href="/products/<%= product.slug %>" class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Read Science</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- Synergistic Bundles Section -->
+<section class="home-section" style="background-color: var(--light-gray); padding-top: 60px; padding-bottom: 60px;">
+  <div class="container">
+    <div class="section-header" style="margin-bottom: 40px;">
+      <span class="badge badge-orange">15% Discount Packages</span>
+      <h2 style="font-family: var(--font-serif); font-size: 28px; margin-top: 8px;">Synergistic Cooldown Bundles</h2>
+      <p>Combine external evaporative cooling with internal hydration or indoor rapid-recovery resting systems.</p>
+    </div>
+
+    <div class="grid-two">
+      <% products.filter(p => p.isBundle).forEach(product => { %>
+        <div class="product-card" style="border-color: #FED7AA; background-color: var(--white);">
+          <div class="product-card-image" style="overflow: hidden; aspect-ratio: 16 / 9;">
+            <img src="<%= product.image %>" alt="<%= product.title %>" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="product-card-body">
+            <span class="product-card-category" style="color: var(--primary-orange);">Recommended Bundle</span>
+            <h3><%= product.title.replace('Product Showcase: ', '') %></h3>
+            <p class="product-card-desc"><%= product.metaDescription %></p>
+            
+            <div class="product-card-footer">
+              <% if (siteMode === 'phase2') { %>
+                <span class="product-price" style="color: var(--primary-orange);">$<%= product.numericPricing %></span>
+                <a href="/products/<%= product.slug %>" class="btn btn-primary" style="padding: 8px 16px; font-size: 14px;">View Bundle</a>
+              <% } else { %>
+                <span class="product-science-notice" style="color: var(--primary-orange);">
+                  🧪 Under Evaluation
+                </span>
+                <a href="/products/<%= product.slug %>" class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Read Science</a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
