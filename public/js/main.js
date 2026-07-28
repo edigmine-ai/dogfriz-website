@@ -67,15 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Helper to trigger mailto links in a hidden iframe to prevent navigating away or losing the tab
+  // Helper to trigger mailto links reliably in a new tab without navigating the current page
   function triggerMailto(url) {
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = url;
-    document.body.appendChild(iframe);
+    const link = document.createElement('a');
+    link.href = url;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
     setTimeout(() => {
-      iframe.remove();
-    }, 1000);
+      link.remove();
+    }, 500);
   }
 
   // --- CONTACT FORM ACTIONS ---
