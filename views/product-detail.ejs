@@ -8,8 +8,8 @@
     </div>
     
     <div class="prompt-tip" style="margin-top: 24px;">
-      <strong>Midjourney Graphic Concept:</strong><br>
-      <span style="font-size: 12px; color: var(--slate-gray); font-style: italic;"><%= product.imagePrompt %></span>
+      <strong>Product Showcase Image:</strong><br>
+      <img src="<%= product.image %>" alt="<%= product.title %>" style="width: 100%; max-height: 180px; object-fit: cover; border-radius: 8px; margin-top: 8px; display: block; border: 1px solid var(--light-gray);">
     </div>
   </div>
 
@@ -30,25 +30,6 @@
 
     <!-- Interactive Sizing Section (If applicable) -->
     <% if (product.slug !== 'portable-flask') { %>
-      <div class="size-selector-group">
-        <div class="size-selector-header">
-          <span>Select Size</span>
-          <span style="color: var(--primary-blue); cursor: pointer;" onclick="document.querySelector('[data-tab=\'tab-sizing\']').click(); document.getElementById('tab-sizing').scrollIntoView({behavior: 'smooth'});">Sizing Chart &rarr;</span>
-        </div>
-        <div class="size-btn-group">
-          <% if (product.slug === 'cooling-mat') { %>
-            <button class="size-btn active" data-size="M">Medium</button>
-            <button class="size-btn" data-size="L">Large</button>
-            <button class="size-btn" data-size="XL">Extra Large</button>
-          <% } else { %>
-            <button class="size-btn" data-size="S">S</button>
-            <button class="size-btn active" data-size="M">M</button>
-            <button class="size-btn" data-size="L">L</button>
-            <button class="size-btn" data-size="XL">XL</button>
-          <% } %>
-        </div>
-      </div>
-
       <!-- Sizing Calculator Widget -->
       <div class="sizing-calculator">
         <div class="sizing-calculator-title">🧮 Interactive Size Finder</div>
@@ -72,7 +53,7 @@
     <div class="buy-box">
       <div style="background-color: var(--ice-blue-bg); border: 1px solid rgba(0, 153, 184, 0.15); padding: 20px; border-radius: var(--radius-sm); text-align: left;">
         <h4 style="color: var(--primary-blue); font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-          🔬 Science Showcase Phase
+          🔬 Science Showcase
         </h4>
         <p style="font-size: 13px; color: var(--slate-gray); line-height: 1.6;">
           Our gear is currently undergoing safety and laboratory testing for the upcoming season. Read our scientific breakdowns below to understand canine cooling mechanics.
