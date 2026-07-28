@@ -1546,8 +1546,8 @@ footer {
 
 @media (max-width: 576px) {
   .container {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
   }
 
   .seals-grid, .grid-three, .grid-two, .footer-grid {
