@@ -30,15 +30,10 @@
             <p class="product-card-desc"><%= product.metaDescription %></p>
             
             <div class="product-card-footer">
-              <% if (siteMode === 'phase2') { %>
-                <span class="product-price">$<%= product.numericPricing %></span>
-                <a href="/products/<%= product.slug %>" class="btn btn-secondary" style="padding: 8px 16px; font-size: 14px;">View Details</a>
-              <% } else { %>
-                <span class="product-science-notice">
-                  🧪 Under Lab Testing
-                </span>
-                <a href="/products/<%= product.slug %>" class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Read Science</a>
-              <% } %>
+              <span class="product-science-notice">
+                🧪 Under Lab Testing
+              </span>
+              <a href="/products/<%= product.slug %>" class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Read Science</a>
             </div>
           </div>
         </div>
@@ -68,15 +63,10 @@
             <p class="product-card-desc"><%= product.metaDescription %></p>
             
             <div class="product-card-footer">
-              <% if (siteMode === 'phase2') { %>
-                <span class="product-price" style="color: var(--primary-orange);">$<%= product.numericPricing %></span>
-                <a href="/products/<%= product.slug %>" class="btn btn-primary" style="padding: 8px 16px; font-size: 14px;">View Bundle</a>
-              <% } else { %>
-                <span class="product-science-notice" style="color: var(--primary-orange);">
-                  🧪 Under Evaluation
-                </span>
-                <a href="/products/<%= product.slug %>" class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Read Science</a>
-              <% } %>
+              <span class="product-science-notice" style="color: var(--primary-orange);">
+                🧪 Under Evaluation
+              </span>
+              <a href="/products/<%= product.slug %>" class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Read Science</a>
             </div>
           </div>
         </div>

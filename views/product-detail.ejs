@@ -24,11 +24,7 @@
       <span style="font-size: 14px; color: var(--slate-gray);">Laboratory Evaluated</span>
     </div>
 
-    <% if (siteMode === 'phase2') { %>
-      <div class="product-detail-price" style="margin-bottom: 20px;">
-        $<%= product.numericPricing %>
-      </div>
-    <% } %>
+
 
     <p class="product-detail-desc"><%= product.metaDescription %></p>
 
@@ -74,27 +70,14 @@
 
     <!-- Phase-Based Buy Box -->
     <div class="buy-box">
-      <% if (siteMode === 'phase2') { %>
-        <div class="buy-box-row">
-          <div class="qty-input">
-            <button class="qty-btn qty-minus">-</button>
-            <div class="qty-val" id="product-qty">1</div>
-            <button class="qty-btn qty-plus">+</button>
-          </div>
-          <button class="btn btn-primary btn-add-to-cart" onclick="addToCart('<%= product.slug %>', '<%= product.title %>', '<%= product.numericPricing %>', '<%= product.image %>')">
-            Add to Cool-Down Drawer
-          </button>
-        </div>
-      <% } else { %>
-        <div style="background-color: var(--ice-blue-bg); border: 1px solid rgba(0, 153, 184, 0.15); padding: 20px; border-radius: var(--radius-sm); text-align: left;">
-          <h4 style="color: var(--primary-blue); font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-            🔬 Science Showcase Phase
-          </h4>
-          <p style="font-size: 13px; color: var(--slate-gray); line-height: 1.6;">
-            Our gear is currently undergoing safety and laboratory testing for the upcoming season. Read our scientific breakdowns below to understand canine cooling mechanics.
-          </p>
-        </div>
-      <% } %>
+      <div style="background-color: var(--ice-blue-bg); border: 1px solid rgba(0, 153, 184, 0.15); padding: 20px; border-radius: var(--radius-sm); text-align: left;">
+        <h4 style="color: var(--primary-blue); font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+          🔬 Science Showcase Phase
+        </h4>
+        <p style="font-size: 13px; color: var(--slate-gray); line-height: 1.6;">
+          Our gear is currently undergoing safety and laboratory testing for the upcoming season. Read our scientific breakdowns below to understand canine cooling mechanics.
+        </p>
+      </div>
     </div>
   </div>
 </div>

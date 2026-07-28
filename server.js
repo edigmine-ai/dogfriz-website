@@ -17,8 +17,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Path to assets directory
 const assetsDir = path.join(__dirname, 'dogfriz_assets');
 
-// Store global site mode in server memory for easy local toggling
-let siteMode = 'phase1'; // 'phase1' or 'phase2'
 let contactMessages = []; // Local memory store for contact submissions
 
 // Cache loaded blogs, products, and shorts
@@ -37,7 +35,7 @@ try {
 
 // Helpers
 app.use((req, res, next) => {
-  res.locals.siteMode = siteMode;
+  res.locals.siteMode = 'phase1';
   res.locals.blogs = blogs;
   res.locals.products = products;
   res.locals.shorts = shorts;
@@ -130,12 +128,7 @@ app.post('/contact', (req, res) => {
 
 // Admin Panel API endpoints for local demo
 app.get('/api/state', (req, res) => {
-  res.json({ siteMode, contactMessagesCount: contactMessages.length, contactMessages });
-});
-
-app.post('/api/toggle-mode', (req, res) => {
-  siteMode = siteMode === 'phase1' ? 'phase2' : 'phase1';
-  res.json({ success: true, siteMode });
+  res.json({ siteMode: 'phase1', contactMessagesCount: contactMessages.length, contactMessages });
 });
 
 // 404 Route

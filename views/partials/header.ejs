@@ -8,22 +8,9 @@
 </head>
 <body data-site-mode="<%= siteMode %>">
 
-  <!-- Admin Bar for local toggle -->
-  <div class="admin-bar">
-    <div class="admin-mode-indicator">
-      <span class="indicator-dot <%= siteMode === 'phase2' ? 'active-commerce' : '' %>"></span>
-      <span>Site State: <strong><%= siteMode === 'phase1' ? 'Phase 1 - Science Showcase (Non-Transactional)' : 'Phase 2 - Activated Commerce (Dropshipping Live)' %></strong></span>
-    </div>
-    <button class="admin-toggle-btn">
-      Switch to <%= siteMode === 'phase1' ? 'Phase 2 (Commerce)' : 'Phase 1 (Science)' %>
-    </button>
-  </div>
-
   <!-- Announcement Bar -->
   <div class="announcement-bar">
-    <%= siteMode === 'phase1' 
-        ? '🔬 CANINE THERMAL REGULATION RESEARCH IN PROGRESS — COMMERCE COMING SOON' 
-        : '🔥 SUMMER SAFETY SALE: GET 15% OFF ALL ACTIVE COOLING GEAR BUNDLES!' %>
+    🔬 CANINE THERMAL REGULATION RESEARCH IN PROGRESS — COMMERCE COMING SOON
   </div>
 
   <!-- Navigation Header -->
@@ -45,56 +32,9 @@
       </nav>
 
       <div class="header-actions">
-        <!-- Cart Icon (Active only in Phase 2) -->
-        <% if (siteMode === 'phase2') { %>
-          <button class="cart-icon-btn" title="Open Cart">
-            🛒 <span class="cart-count">0</span>
-          </button>
-        <% } else { %>
-          <span class="product-science-notice" style="font-size: 14px;" title="Commerce disabled during research phase">
-            🧪 Research Phase
-          </span>
-        <% } %>
+        <span class="product-science-notice" style="font-size: 14px;" title="Commerce disabled during research phase">
+          🧪 Research Phase
+        </span>
       </div>
     </div>
   </header>
-
-  <!-- Slide-out Cart Drawer (Only in Phase 2) -->
-  <% if (siteMode === 'phase2') { %>
-    <div class="cart-drawer-backdrop">
-      <div class="cart-drawer">
-        <div class="cart-drawer-header">
-          <h3>Your Cool-Down Gear 🐾</h3>
-          <button class="cart-close-btn">&times;</button>
-        </div>
-        <div class="cart-drawer-items">
-          <!-- Filled dynamically by main.js -->
-        </div>
-        <div class="cart-drawer-footer">
-          <div class="cart-summary-row">
-            <span>Subtotal</span>
-            <span class="cart-total-value">$0.00</span>
-          </div>
-          <div class="cart-summary-row" style="font-size: 13px; color: var(--slate-gray);">
-            <span>Shipping</span>
-            <span>FREE</span>
-          </div>
-          <div class="cart-summary-row cart-summary-total">
-            <span>Total</span>
-            <span class="cart-total-value">$0.00</span>
-          </div>
-          <button class="btn btn-primary btn-checkout">Proceed to Checkout</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Simulated Checkout Modal -->
-    <div class="checkout-modal">
-      <div class="checkout-modal-content">
-        <div class="checkout-success-icon">🎉</div>
-        <h2 style="font-family: var(--font-serif); margin-bottom: 12px;">Order Placed Successfully!</h2>
-        <p style="color: var(--slate-gray); margin-bottom: 30px;">Thank you for shopping at Dogfriz. This simulated transaction completed successfully! Your dog will stay cool and happy.</p>
-        <button class="btn btn-primary checkout-modal-close-btn" style="width: 100%;">Return to Store</button>
-      </div>
-    </div>
-  <% } %>
