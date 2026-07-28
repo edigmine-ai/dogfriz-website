@@ -162,9 +162,9 @@ function getShorts(assetsDir) {
   const sections = content.split(/## Script \d+:/).slice(1);
   
   const shortsData = [
-    { id: 1, image: '/images/short_2_cooling_vest.jpg', videoUrl: '/videos/short_2_cooling_vest.mp4' },
-    { id: 2, image: '/images/short_3_indoor_recovery.jpg', videoUrl: '/videos/short_3_indoor_recovery.mp4' },
-    { id: 3, image: '/images/short_4_silent_signs.jpg', videoUrl: '/videos/short_4_silent_signs.mp4' }
+    { id: 1, image: '/images/short_2_cooling_vest.jpg', videoUrl: 'https://www.youtube.com/embed/FcmoTOaBVEI' },
+    { id: 2, image: '/images/short_3_indoor_recovery.jpg', videoUrl: 'https://www.youtube.com/embed/uRXCtI_gm3s' },
+    { id: 3, image: '/images/short_4_silent_signs.jpg', videoUrl: 'https://www.youtube.com/embed/FFtl8zewAn4' }
   ];
 
   return sections.map((sec, idx) => {
