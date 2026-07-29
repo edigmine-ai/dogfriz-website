@@ -50,6 +50,8 @@ app.get('/', (req, res) => {
   const featuredProducts = products.filter(p => !p.isBundle).slice(0, 3);
   res.render('index', { 
     pageTitle: 'Home', 
+    metaDescription: 'Keep your dog safe and cool this summer with Dogfriz veterinarian-approved evaporative cooling vests, pads, and flasks designed for canine thermal regulation.',
+    ogImage: '/images/product_cooling_vest.jpg',
     activeNav: 'home',
     latestBlogs,
     featuredProducts
@@ -59,6 +61,8 @@ app.get('/', (req, res) => {
 app.get('/blogs', (req, res) => {
   res.render('blogs', { 
     pageTitle: 'Summer Safety Guides', 
+    metaDescription: 'Read our expert canine summer safety guides, including recognizing and preventing doggy heatstroke, hot pavement walking tests, and science-backed dog cooling tips.',
+    ogImage: '/images/blog_heatstroke_header.jpg',
     activeNav: 'blogs' 
   });
 });
@@ -70,6 +74,8 @@ app.get('/blogs/:slug', (req, res) => {
   }
   res.render('blog-detail', { 
     pageTitle: blog.metaTitle || blog.title, 
+    metaDescription: blog.metaDescription,
+    ogImage: blog.image,
     activeNav: 'blogs', 
     blog 
   });
@@ -78,6 +84,8 @@ app.get('/blogs/:slug', (req, res) => {
 app.get('/products', (req, res) => {
   res.render('products', { 
     pageTitle: 'Canine Gear Science', 
+    metaDescription: 'Discover the scientific design behind Dogfriz canine cooling gear, including core cooling vests, self-cooling mats, and portable hydration flasks.',
+    ogImage: '/images/product_cooling_vest.jpg',
     activeNav: 'products' 
   });
 });
@@ -89,6 +97,8 @@ app.get('/products/:slug', (req, res) => {
   }
   res.render('product-detail', { 
     pageTitle: product.metaTitle || product.title, 
+    metaDescription: product.metaDescription,
+    ogImage: product.image,
     activeNav: 'products', 
     product 
   });
@@ -97,6 +107,8 @@ app.get('/products/:slug', (req, res) => {
 app.get('/mission', (req, res) => {
   res.render('mission', { 
     pageTitle: 'Our Mission', 
+    metaDescription: 'Learn about the Dogfriz mission to prevent heat exhaustion and hot weather injury in dogs through science-based education and advanced cooling engineering.',
+    ogImage: '/images/product_cooling_vest.jpg',
     activeNav: 'mission' 
   });
 });
@@ -104,8 +116,55 @@ app.get('/mission', (req, res) => {
 app.get('/shorts', (req, res) => {
   res.render('shorts', { 
     pageTitle: 'YouTube Shorts & Video Strategy', 
+    metaDescription: 'Explore our viral YouTube Shorts and dog safety educational video storyboard and strategy.',
+    ogImage: '/images/short_2_cooling_vest.jpg',
     activeNav: 'shorts' 
   });
+});
+
+// Dynamic XML Sitemap for Google Search Console
+app.get('/sitemap.xml', (req, res) => {
+  res.header('Content-Type', 'application/xml');
+  
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  
+  const host = 'https://dogfriz-website.onrender.com';
+  
+  // Core pages
+  const staticPages = [
+    { url: '/', priority: '1.0', changefreq: 'daily' },
+    { url: '/blogs', priority: '0.8', changefreq: 'weekly' },
+    { url: '/products', priority: '0.8', changefreq: 'weekly' },
+    { url: '/mission', priority: '0.7', changefreq: 'monthly' },
+    { url: '/shorts', priority: '0.7', changefreq: 'weekly' }
+  ];
+  
+  staticPages.forEach(p => {
+    xml += `  <url>\n    <loc>${host}${p.url}</loc>\n    <priority>${p.priority}</priority>\n    <changefreq>${p.changefreq}</changefreq>\n  </url>\n`;
+  });
+  
+  // Blog pages
+  blogs.forEach(b => {
+    xml += `  <url>\n    <loc>${host}/blogs/${b.slug}</loc>\n    <priority>0.6</priority>\n    <changefreq>weekly</changefreq>\n  </url>\n`;
+  });
+  
+  // Product pages
+  products.forEach(p => {
+    xml += `  <url>\n    <loc>${host}/products/${p.slug}</loc>\n    <priority>0.7</priority>\n    <changefreq>weekly</changefreq>\n  </url>\n`;
+  });
+  
+  xml += '</urlset>';
+  res.send(xml);
+});
+
+// Robots.txt file
+app.get('/robots.txt', (req, res) => {
+  res.type('text/plain');
+  res.send(`User-agent: *
+Allow: /
+
+Sitemap: https://dogfriz-website.onrender.com/sitemap.xml`);
 });
 
 // Simulated Contact Form Submission
