@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dogfriz | <%= pageTitle %></title>
+  <meta name="description" content="<%= locals.metaDescription || 'Dogfriz Canine Summer Safety - Advanced thermoregulatory and cooling gear designed in collaboration with veterinary experts to keep your dog cool.' %>">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Dogfriz | <%= pageTitle %>">
+  <meta property="og:description" content="<%= locals.metaDescription || 'Dogfriz Canine Summer Safety - Advanced thermoregulatory and cooling gear designed in collaboration with veterinary experts to keep your dog cool.' %>">
+  <meta property="og:image" content="<%= locals.ogImage || '/images/product_cooling_vest.jpg' %>">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dogfriz | <%= pageTitle %>">
+  <meta name="twitter:description" content="<%= locals.metaDescription || 'Dogfriz Canine Summer Safety - Advanced thermoregulatory and cooling gear designed in collaboration with veterinary experts to keep your dog cool.' %>">
+  <meta name="twitter:image" content="<%= locals.ogImage || '/images/product_cooling_vest.jpg' %>">
+
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body data-site-mode="<%= siteMode %>">
@@ -26,8 +40,9 @@
           <li><a href="/" class="<%= activeNav === 'home' ? 'active' : '' %>">Home</a></li>
           <li><a href="/blogs" class="<%= activeNav === 'blogs' ? 'active' : '' %>">Summer Safety Guides</a></li>
           <li><a href="/products" class="<%= activeNav === 'products' ? 'active' : '' %>">Canine Gear Science</a></li>
-          <li><a href="/shorts" class="<%= activeNav === 'shorts' ? 'active' : '' %>">YouTube Shorts</a></li>
+          <li><a href="/social-media" class="<%= activeNav === 'social-media' ? 'active' : '' %>">Social Media</a></li>
           <li><a href="/mission" class="<%= activeNav === 'mission' ? 'active' : '' %>">Our Mission</a></li>
+          <li><a href="/get-in-touch" class="<%= activeNav === 'get-in-touch' ? 'active' : '' %>">Get In Touch</a></li>
         </ul>
       </nav>
 

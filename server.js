@@ -113,12 +113,21 @@ app.get('/mission', (req, res) => {
   });
 });
 
-app.get('/shorts', (req, res) => {
-  res.render('shorts', { 
-    pageTitle: 'YouTube Shorts & Video Strategy', 
-    metaDescription: 'Explore our viral YouTube Shorts and dog safety educational video storyboard and strategy.',
+app.get('/social-media', (req, res) => {
+  res.render('social-media', { 
+    pageTitle: 'Social Media', 
+    metaDescription: 'Explore our official Dogfriz social media accounts and safety resources.',
     ogImage: '/images/short_2_cooling_vest.jpg',
-    activeNav: 'shorts' 
+    activeNav: 'social-media' 
+  });
+});
+
+app.get('/get-in-touch', (req, res) => {
+  res.render('get-in-touch', { 
+    pageTitle: 'Get In Touch', 
+    metaDescription: 'Have questions about canine summer safety? Our safety team and veterinary critical care consultants are available to help.',
+    ogImage: '/images/product_cooling_vest.jpg',
+    activeNav: 'get-in-touch' 
   });
 });
 
@@ -137,7 +146,8 @@ app.get('/sitemap.xml', (req, res) => {
     { url: '/blogs', priority: '0.8', changefreq: 'weekly' },
     { url: '/products', priority: '0.8', changefreq: 'weekly' },
     { url: '/mission', priority: '0.7', changefreq: 'monthly' },
-    { url: '/shorts', priority: '0.7', changefreq: 'weekly' }
+    { url: '/social-media', priority: '0.7', changefreq: 'weekly' },
+    { url: '/get-in-touch', priority: '0.7', changefreq: 'monthly' }
   ];
   
   staticPages.forEach(p => {

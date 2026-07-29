@@ -1,0 +1,73 @@
+<%- include('partials/header') %>
+
+<main class="container" style="padding-top: 60px; padding-bottom: 80px;">
+  <div class="contact-grid">
+    <div>
+      <span class="badge badge-orange">Get In Touch</span>
+      <h1 style="font-family: var(--font-serif); font-size: 40px; margin-top: 12px; margin-bottom: 20px; line-height: 1.2;">Have Questions About Canine Summer Safety?</h1>
+      <p style="color: var(--slate-gray); margin-bottom: 40px; font-size: 16px; line-height: 1.6;">
+        Our safety team and veterinary critical care consultants are available to help. If you have questions about which cooling vest is appropriate for your breed, sizing guidelines, or thermal regulation mechanisms, drop us a line!
+      </p>
+
+      <div style="margin-bottom: 35px;">
+        <h3 style="font-family: var(--font-serif); font-size: 20px; margin-bottom: 10px;">✉️ Brand Email</h3>
+        <p style="font-size: 16px;">
+          <!-- Using target="_blank" mailto dynamically to preserve workspace context -->
+          <a href="mailto:edigmine@gmail.com" target="_blank" style="color: var(--primary-blue); text-decoration: none; font-weight: 600;">edigmine@gmail.com</a>
+        </p>
+      </div>
+
+      <div>
+        <h3 style="font-family: var(--font-serif); font-size: 20px; margin-bottom: 15px;">📱 Our Social Media</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+          <li style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 18px;">🎵</span>
+            <a href="https://www.tiktok.com/@dogfriz123" target="_blank" style="color: var(--slate-gray); text-decoration: none; font-weight: 500; font-size: 15px;">TikTok: @dogfriz123</a>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 18px;">📸</span>
+            <a href="https://www.instagram.com/dogfriz_tv/" target="_blank" style="color: var(--slate-gray); text-decoration: none; font-weight: 500; font-size: 15px;">Instagram: @dogfriz_tv</a>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 18px;">📌</span>
+            <a href="https://www.pinterest.com/edigmine/" target="_blank" style="color: var(--slate-gray); text-decoration: none; font-weight: 500; font-size: 15px;">Pinterest: edigmine</a>
+          </li>
+          <li style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 18px;">🎥</span>
+            <a href="https://www.youtube.com/channel/UCHEIw-jV59t9_XyIgtoXeFg" target="_blank" style="color: var(--slate-gray); text-decoration: none; font-weight: 500; font-size: 15px;">YouTube: Dogfriz Channel</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <h3 style="font-family: var(--font-serif); margin-bottom: 24px; font-size: 24px;">Send a Message</h3>
+      <form id="dogfriz-contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Breed / Subject</label>
+          <select id="subject" name="subject">
+            <option value="Sizing Advice (Include Breed & Weight)">Sizing Advice (Include Breed & Weight)</option>
+            <option value="Product Science">Gear Science Questions</option>
+            <option value="Veterinary Partner">Veterinary / Retail Partnership</option>
+            <option value="General Support">General Support</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="How can we help you keep your dog safe?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Message</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
