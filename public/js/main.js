@@ -120,18 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- NEWSLETTER SUBSCRIPTION FORM ---
-  const newsletterForm = document.getElementById('newsletter-subscription-form');
-  if (newsletterForm) {
-    newsletterForm.addEventListener('submit', (e) => {
+  const newsletterForms = document.querySelectorAll('.newsletter-form');
+  newsletterForms.forEach(form => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const emailInput = document.getElementById('newsletter-email');
+      const emailInput = form.querySelector('input[type="email"]');
       const email = emailInput ? emailInput.value : '';
       if (email) {
         const mailtoUrl = `mailto:edigmine@gmail.com?subject=${encodeURIComponent('Subscribe Dogfriz Safety Alerts')}&body=${encodeURIComponent('Hello! Please subscribe me to canine hot-weather safety alerts. My email address is: ' + email)}`;
         triggerMailto(mailtoUrl);
         alert('Thank you! Opening your email client to complete your subscription request to edigmine@gmail.com.');
-        newsletterForm.reset();
+        form.reset();
       }
     });
-  }
+  });
 });
