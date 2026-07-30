@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
   const latestBlogs = blogs.slice(0, 2);
   const featuredProducts = products.filter(p => !p.isBundle).slice(0, 3);
   res.render('index', { 
-    pageTitle: 'Home', 
+    pageTitle: 'Cooling Vests & Mats for Dogs | Summer Safety Gear', 
     metaDescription: 'Keep your dog safe and cool this summer with Dogfriz veterinarian-approved evaporative cooling vests, pads, and flasks designed for canine thermal regulation.',
     ogImage: '/images/product_cooling_vest.jpg',
     activeNav: 'home',
