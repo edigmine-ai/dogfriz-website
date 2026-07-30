@@ -402,13 +402,19 @@ footer {
 }
 
 .newsletter-form input {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--white);
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  color: var(--navy-dark);
   padding: 10px 16px;
   border-radius: var(--radius-sm);
   font-size: 14px;
   flex-grow: 1;
+}
+
+footer .newsletter-form input {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--white);
 }
 
 .newsletter-form input::placeholder {
