@@ -91,7 +91,8 @@ const blogMapping = {
   'recognizing-preventing-heatstroke': '01_recognizing_preventing_heatstroke.md',
   'breeds-at-risk-summer': '02_breeds_at_risk_summer.md',
   'ice-water-vs-cooling-vests': '03_ice_water_vs_cooling_vests.md',
-  'pavement-temp-walk-test': '04_pavement_temp_walk_test.md'
+  'pavement-temp-walk-test': '04_pavement_temp_walk_test.md',
+  'canine-hydration-science': '05_canine_hydration_science.md'
 };
 
 const productMapping = {
@@ -106,7 +107,8 @@ const blogImages = {
   'recognizing-preventing-heatstroke': '/images/blog_heatstroke_header.jpg',
   'breeds-at-risk-summer': '/images/blog_at_risk_breeds.jpg',
   'ice-water-vs-cooling-vests': '/images/blog_ice_vs_vest.jpg',
-  'pavement-temp-walk-test': '/images/blog_pavement_test.jpg'
+  'pavement-temp-walk-test': '/images/blog_pavement_test.jpg',
+  'canine-hydration-science': '/images/product_portable_flask.jpg'
 };
 
 const productImages = {
