@@ -44,14 +44,132 @@
 
     <!-- Phase-Based Buy Box -->
     <div class="buy-box">
-      <div style="background-color: var(--ice-blue-bg); border: 1px solid rgba(0, 153, 184, 0.15); padding: 20px; border-radius: var(--radius-sm); text-align: left;">
-        <h4 style="color: var(--primary-blue); font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
-          🔬 Science Showcase
-        </h4>
-        <p style="font-size: 13px; color: var(--slate-gray); line-height: 1.6;">
-          Our gear is currently undergoing safety and laboratory testing for the upcoming season. Read our scientific breakdowns below to understand canine cooling mechanics.
-        </p>
-      </div>
+      <% 
+        // Map our product slugs to your actual live Shopify Product IDs
+        const shopifyProductIds = {
+          'core-cooling-vest': '9222209175707',
+          'cooling-mat': '',
+          'portable-flask': '',
+          'summer-safety-kit': '',
+          'ultimate-cooldown': ''
+        };
+        const shopifyId = shopifyProductIds[product.slug];
+      %>
+
+      <% if (shopifyId) { %>
+        <!-- Live Shopify Buy Button Checkout Integration -->
+        <div style="background: white; border: 1px solid var(--border-color); padding: 25px; border-radius: var(--radius-md); box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-top: 15px;">
+          <div id="shopify-buy-button-container" style="width: 100%;"></div>
+        </div>
+
+        <script type="text/javascript">
+        (function () {
+          var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+          if (window.ShopifyBuy) {
+            if (window.ShopifyBuy.UI) {
+              ShopifyBuyInit();
+            } else {
+              loadScript();
+            }
+          } else {
+            loadScript();
+          }
+          function loadScript() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = scriptURL;
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
+            script.onload = ShopifyBuyInit;
+          }
+          function ShopifyBuyInit() {
+            var client = ShopifyBuy.buildClient({
+              domain: 'sxi032-0x.myshopify.com',
+              storefrontAccessToken: '0c3598b80cbae2b1169df52d1bf4fec5',
+            });
+            ShopifyBuy.UI.onReady(client).then(function (ui) {
+              ui.createComponent('product', {
+                id: '<%= shopifyId %>',
+                node: document.getElementById('shopify-buy-button-container'),
+                moneyFormat: '%7B%7Bamount%7D%7D%20NIS',
+                options: {
+                  "product": {
+                    "styles": {
+                      "product": {
+                        "@media (min-width: 601px)": {
+                          "max-width": "100%",
+                          "margin-left": "0px",
+                          "margin-bottom": "0px"
+                        }
+                      },
+                      "button": {
+                        "background-color": "var(--primary-blue)",
+                        "font-family": "var(--font-sans)",
+                        ":hover": {
+                          "background-color": "var(--primary-blue-hover)"
+                        },
+                        "border-radius": "30px",
+                        "padding-left": "24px",
+                        "padding-right": "24px"
+                      }
+                    },
+                    "text": {
+                      "button": "Add to cart"
+                    }
+                  },
+                  "productSet": {
+                    "styles": {
+                      "products": {
+                        "@media (min-width: 601px)": {
+                          "margin-left": "0px"
+                        }
+                      }
+                    }
+                  },
+                  "modalProduct": {
+                    "contents": {
+                      "img": false,
+                      "imgWithCarousel": true,
+                      "button": false,
+                      "buttonWithQuantity": true
+                    },
+                    "styles": {
+                      "product": {
+                        "@media (min-width: 601px)": {
+                          "max-width": "100%",
+                          "margin-left": "0px",
+                          "margin-bottom": "0px"
+                        }
+                      }
+                    },
+                    "text": {
+                      "button": "Add to cart"
+                    }
+                  },
+                  "option": {},
+                  "cart": {
+                    "text": {
+                      "total": "Subtotal",
+                      "button": "Checkout"
+                    }
+                  },
+                  "toggle": {}
+                },
+              });
+            });
+          }
+        })();
+        </script>
+      <% } else { %>
+        <!-- Science Showcase Default Placeholder -->
+        <div style="background-color: var(--ice-blue-bg); border: 1px solid rgba(0, 153, 184, 0.15); padding: 20px; border-radius: var(--radius-sm); text-align: left;">
+          <h4 style="color: var(--primary-blue); font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            🔬 Science Showcase
+          </h4>
+          <p style="font-size: 13px; color: var(--slate-gray); line-height: 1.6;">
+            Our gear is currently undergoing safety and laboratory testing for the upcoming season. Read our scientific breakdowns below to understand canine cooling mechanics.
+          </p>
+        </div>
+      <% } %>
     </div>
   </div>
 </div>
