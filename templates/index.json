@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "sizing_calculator": {
+      "type": "dogfriz-sizing-calculator"
+    }
+  },
+  "order": ["sizing_calculator"]
+}
