@@ -83,6 +83,7 @@ def call_zapier_mcp(tool_name, arguments):
             log_message(f"Zapier MCP HTTP Error: {response.status_code}")
             return None
             
+        # Parse SSE response format
         text = response.text
         data = None
         for line in text.splitlines():
@@ -135,13 +136,48 @@ def get_product_details(title, search_keyword):
     return None
 
 def generate_image_and_upload(product_title):
-    log_message(f"Generating high-end professional cover image for '{product_title}'...")
+    log_message(f"Generating high-end customized cover image for '{product_title}'...")
+    
+    # Dynamic Aesthetic & Palette Generator
+    product_lower = product_title.lower()
+    
+    if "vitamin c" in product_lower or "neogen" in product_lower:
+        palette = "warm golden-hour sun-drenched lighting, rich amber and bright orange accents"
+        props = "organic fresh sliced oranges and citrus fruits with light condensation"
+        surface = "clean warm-toned travertine stone ledge"
+    elif "peptide" in product_lower or "bloom" in product_lower:
+        palette = "botanical soft green and crisp white color palette, fresh morning dew lighting"
+        props = "delicate rosemary sprigs and fresh dewy eucalyptus leaves"
+        surface = "natural slate stone tile surface"
+    elif "hyaluronic" in product_lower or "mizon" in product_lower:
+        palette = "cool refreshing aquatic blue and silver tones, clean backlighting"
+        props = "frosty clear water droplets, gentle water ripples, and translucent serum splash"
+        surface = "modern clear acrylic vanity tray"
+    elif "wand" in product_lower:
+        palette = "luxe warm metallic and soft champagne hues, elegant soft-diffused backdrop"
+        props = "premium rose-gold skincare wand and serum dropper bottle"
+        surface = "minimalist cream-colored ceramic vanity"
+    elif "dry eye" in product_lower or "heated" in product_lower:
+        palette = "cozy relaxing warm lavender and soft grey palette, calming candlelit glow"
+        props = "plush folded white spa linens, relaxed lavender sprigs, and chamomile flowers"
+        surface = "natural warm cedar wood surface"
+    elif "purred" in product_lower or "led light" in product_lower:
+        palette = "sleek high-tech minimalist beauty aesthetic, soft therapeutic red light ambient glow"
+        props = "a premium sleek white LED light therapy facial mask glowing gently"
+        surface = "luxurious reflective dark glass counter"
+    else:
+        # Defaults for Kits and other products
+        palette = "neutral warm sand and beige tones, elegant natural lighting with soft shadows"
+        props = "curated premium beauty kit arrangement, glass droppers, and minimalist accessories"
+        surface = "sleek minimalist marble surface"
+
     prompt = f"""
-Editorial skincare photography of '{product_title}', high-end luxury beauty brand aesthetic, 
-soft-diffused professional studio lighting with elegant shadows, minimalist marble vanity surface, 
-neutral pastel backdrop, sleek modern composition, Hasselblad medium format camera look, 85mm lens, 
-f/1.8 aperture, soft natural focus falloff, high-resolution textures with realistic glass bottle or device details, 
-pristine and clean, 16:9 aspect ratio
+Editorial skincare product photography of '{product_title}', high-end luxury beauty brand aesthetic.
+Color Palette & Lighting: {palette}.
+Featured Elements & Props: {props}.
+Surface: {surface}.
+Style: Minimalist composition, Hasselblad medium format camera look, 85mm lens, f/1.8 aperture, 
+soft natural depth of field, high-resolution textures, pristine and clean, 16:9 aspect ratio.
 """
     try:
         response = client.models.generate_content(
