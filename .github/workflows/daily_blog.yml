@@ -1,0 +1,44 @@
+name: Daily Shopify Blog Curator
+
+on:
+  schedule:
+    # Triggers every single day at 9:00 AM UTC (you can adjust this cron schedule)
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    # Allows you to click an "Instant Publish / Run Now" button on GitHub directly
+
+jobs:
+  publish_blog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Allows the workflow to commit the blog_history.json back to your repo
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip' # Optional: Caches dependencies for faster subsequent runs
+
+    - name: Install Skincare Automation Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests google-genai
+
+    - name: Execute Daily Curator Assistant & Publish Live
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        ZAPIER_TOKEN: ${{ secrets.ZAPIER_TOKEN }}
+      run: |
+        python daily_glow_assistant.py
+
+    - name: Commit and Push Updated History Log
+      run: |
+        git config --global user.name "GlowMentor Cloud Assistant"
+        git config --global user.email "assistant@glowmentor.com"
+        git add blog_history.json || true
+        git commit -m "Auto-logged daily published product to blog_history.json [skip ci]" || true
+        git push || true
